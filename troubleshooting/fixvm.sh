@@ -41,10 +41,12 @@ sudo chkconfig --level 2345 tomcat on
 sudo alternatives --config java <<< 1
 
 #restart service
-sudo service httpd restart
-sudo service tomcat start
+#sudo service httpd restart
+#sudo service tomcat start
 echo "Stop fixing troubles, restart Virtual Machine."
 
 #Change connector address to "127.0.0.1" for protocol "AJP/1.3"
 sed -i 's/Connector address="192.168.56.10" port="8009"/Connector address="127.0.0.1" port="8009"/' /opt/apache/tomcat/current/conf/server.xml
 sed -i 's/192.168.56.10/127.0.0.1/' /etc/httpd/conf.d/workers.properties
+sudo service httpd restart
+sudo service tomcat start
